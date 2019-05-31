@@ -10,10 +10,8 @@ import { init } from 'contentful-ui-extensions-sdk';
 import '@contentful/forma-36-react-components/dist/styles.css';
 import './index.css';
 import { 
-	Button, 
-	Dropdown, 
-	DropdownList, 
-	DropdownListItem,
+	FieldGroup,
+	RadioButtonField, 
 } from '@contentful/forma-36-react-components';
 
 // Create UI Extension component
@@ -27,7 +25,6 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			open: false,
 			value: props.sdk.field.getValue(),
 		};
 	}
@@ -53,35 +50,31 @@ class App extends React.Component {
 
 	onChange = e => {
 		const value = e.currentTarget.value;
+		console.log(value);
 		this.setState({ value });
-		if (value) {
-			this.props.sdk.field.setValue(value);
-		} else {
-			this.props.sdk.field.removeValue();
-		}
+		this.props.sdk.field.setValue(value);
 	};
 
 	render() {
 		return (
-			<Dropdown
-				isOpen={this.state.open}
-				onClose={() => this.setState({ open: false})}
-				toggleElement={ <Button 
-						size="small" 
-						buttonType="muted" 
-						indicateDropdown 
-						onClick={() => this.setState({ open: !this.state.open})}>
-						Choose a color
-				</Button> } 
-			>
-				<DropdownList maxHeight={200}>
-        {[...new Array(2)].map((entry, index) => (
-          <DropdownListItem key={`key-${index}`} onClick={() => console.log("click")}>
-            Entry Item {index}
-          </DropdownListItem>
-        ))}
-	      </DropdownList>
-	    </Dropdown>
+			<FieldGroup>
+	      <RadioButtonField
+	        labelText={'Color 1'}
+	        checked={this.state.value == 'yes'}
+	        value="yes"
+					labelIsLight={true}
+	        onChange={this.onChange}
+	        id="termsCheckbox"
+	      />
+	      <RadioButtonField
+	        labelText={'Color 2'}
+	        value="no"
+	        checked={this.state.value == 'no'}
+					labelIsLight={true}
+	        onChange={this.onChange}
+	        id="termsCheckboxOption2"
+	      />
+	    </FieldGroup>
 			// <div>
 			// 	<h1>Test</h1>
 			// 	<TextInput
