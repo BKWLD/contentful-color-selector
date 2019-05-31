@@ -15,7 +15,7 @@ import {
 } from '@contentful/forma-36-react-components';
 
 // Create UI Extension component
-class App extends React.Component {
+class ColorSelector extends React.Component {
 	static propTypes = {
 		sdk: PropTypes.object.isRequired,
 	};
@@ -24,7 +24,6 @@ class App extends React.Component {
 
 	constructor(props) {
 		super(props);
-		console.log(props.sdk.parameters.installation);
 		
 		// Check for colors to be defined
 		let colors = props.sdk.parameters.installation.colors
@@ -73,36 +72,42 @@ class App extends React.Component {
 	onChange = e => {
 		const value = e.currentTarget.value;
 		this.setState({ value });
-		this.props.sdk.field.setValue(value);
+		if (value) {
+			this.props.sdk.field.setValue(value);
+		} else {
+			this.props.sdk.field.removeValue();
+		}
 	};
 
 	// Generate the list of radio fields
 	render() {
 		return (
 			<FieldGroup>
-	      <RadioButtonField
-	        labelText={'Color 1'}
-	        checked={this.state.value == 'yes'}
-	        value="yes"
+				<RadioButtonField
+					id='null'
+					labelText='None'
+					checked={!this.state.value}
 					labelIsLight={true}
-	        onChange={this.onChange}
-	        id="termsCheckbox"
-	      />
-	      <RadioButtonField
-	        labelText={'Color 2'}
-	        value="no"
-	        checked={this.state.value == 'no'}
-					labelIsLight={true}
-	        onChange={this.onChange}
-	        id="termsCheckboxOption2"
-	      />
+					onChange={this.onChange}
+				/>
+				{ Object.entries(this.state.colors).map(([name, color]) => (
+					<RadioButtonField
+						key={name}
+						id={name}
+		        labelText={name + <div class='swatch'></div>}
+		        checked={this.state.value == name}
+		        value={name}
+						labelIsLight={true}
+		        onChange={this.onChange}
+		      />
+				))}
 	    </FieldGroup>
 		);
 	}
 }
 
 init(sdk => {
-	ReactDOM.render(<App sdk={sdk} />, document.getElementById('root'));
+	ReactDOM.render(<ColorSelector sdk={sdk} />, document.getElementById('root'));
 });
 
 /**
