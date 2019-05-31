@@ -1,0 +1,13 @@
+{
+  "name": "contentful-color-selector",
+  "version": "1.0.0",
+  "description": "A UI Extension for Contentful that generate a dropdown for selecting a space-wide color",
+  "main": "index.js",
+  "repository": "git@github.com:BKWLD/contentful-color-selector.git",
+  "author": "Bukwild",
+  "license": "MIT",
+  "dependencies": {
+    "@contentful/forma-36-react-components": "^3.8.1",
+    "contentful-ui-extensions-sdk": "^3.8.0"
+  }
+}
