@@ -1,0 +1,7 @@
+{
+	"id": "contentful-color-selector",
+	"name": "Color Selector",
+	"fieldTypes": ["Symbol"],
+	"srcdoc": "./index.html",
+	"sidebar": "false"
+}
