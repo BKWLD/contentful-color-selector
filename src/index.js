@@ -24,11 +24,30 @@ class App extends React.Component {
 
 	constructor(props) {
 		super(props);
+		console.log(props.sdk.parameters.installation);
+		
+		// Check for colors to be defined
+		let colors = props.sdk.parameters.installation.colors
+		if (!colors) {
+			return props.sdk.notifier.error(`Colors parameter is empty.  This needs to be set 
+				in the UI Extension Settings for the Color Selector.`)
+		}
+		
+		// Check if colors is valid JSON
+		try {
+			colors = JSON.parse(colors)
+		} catch (e) {
+			return props.sdk.notifier.error('The Color Selector "Colors" setting does not contain valid JSON.')
+		}
+		
+		// Set initial state
 		this.state = {
+			colors: colors,
 			value: props.sdk.field.getValue(),
 		};
 	}
 
+	// On mount
 	componentDidMount() {
 		this.props.sdk.window.startAutoResizer();
 
@@ -38,23 +57,26 @@ class App extends React.Component {
 		);
 	}
 
+	// On onmount
 	componentWillUnmount() {
 		if (this.detachExternalChangeHandler) {
 			this.detachExternalChangeHandler();
 		}
 	}
 
+	// Hadle external chages, like from other editors
 	onExternalChange = value => {
 		this.setState({ value });
 	};
 
+	// Handle choices in the radio fields
 	onChange = e => {
 		const value = e.currentTarget.value;
-		console.log(value);
 		this.setState({ value });
 		this.props.sdk.field.setValue(value);
 	};
 
+	// Generate the list of radio fields
 	render() {
 		return (
 			<FieldGroup>
@@ -75,16 +97,6 @@ class App extends React.Component {
 	        id="termsCheckboxOption2"
 	      />
 	    </FieldGroup>
-			// <div>
-			// 	<h1>Test</h1>
-			// 	<TextInput
-			// 		width="large"
-			// 		type="text"
-			// 		id="my-field"
-			// 		value={this.state.value}
-			// 		onChange={this.onChange}
-			// 	/>
-			// </div>
 		);
 	}
 }
