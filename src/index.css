@@ -7,4 +7,29 @@ div {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  margin-top: 5px;
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  font-size:  14px;
+}
+
+input {
+  margin-right: 6px;
+}
+
+.swatch {
+  height: 1em;
+  width: 1em;
+  display: inline-block;
+  border: 1px solid #d3dce0;
+  box-shadow: inset 0 0 0 1px white ;
+  margin-left: .5em;
 }
