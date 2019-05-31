@@ -4,5 +4,16 @@
   "srcdoc": "./build/index.html",
   "fieldTypes": [
     "Symbol"
-  ]
+  ],
+  "parameters": {
+    "installation": [
+      {
+        "id": "colors",
+        "type": "Symbol",
+        "name": "Colors",
+        "description": "A JSON hash of your app's colors.  Keys are the color's name (and what is stored as the value of the field) and values are the hex (with '#') used to make a color swatch by this extension. For example, `{ Red: \"#ff0000\", Blue: \"#0000ff\" }`.",
+        "required": true
+      }
+    ]
+  }
 }
