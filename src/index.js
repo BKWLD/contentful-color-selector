@@ -6,15 +6,14 @@ import ReactDOM from 'react-dom';
 // Contentful deps
 import { init } from 'contentful-ui-extensions-sdk';
 
-// Forma 36 components CSS
+// Forma 36 components
 import '@contentful/forma-36-react-components/dist/styles.css';
 import './index.css';
 import { 
-	TextInput, 
 	Button, 
 	Dropdown, 
 	DropdownList, 
-	DropdownListItem 
+	DropdownListItem,
 } from '@contentful/forma-36-react-components';
 
 // Create UI Extension component
@@ -64,16 +63,35 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<h1>Test</h1>
-				<TextInput
-					width="large"
-					type="text"
-					id="my-field"
-					value={this.state.value}
-					onChange={this.onChange}
-				/>
-			</div>
+			<Dropdown
+				isOpen={this.state.open}
+				onClose={() => this.setState({ open: false})}
+				toggleElement={ <Button 
+						size="small" 
+						buttonType="muted" 
+						indicateDropdown 
+						onClick={() => this.setState({ open: !this.state.open})}>
+						Choose a color
+				</Button> } 
+			>
+				<DropdownList maxHeight={200}>
+        {[...new Array(2)].map((entry, index) => (
+          <DropdownListItem key={`key-${index}`} onClick={() => console.log("click")}>
+            Entry Item {index}
+          </DropdownListItem>
+        ))}
+	      </DropdownList>
+	    </Dropdown>
+			// <div>
+			// 	<h1>Test</h1>
+			// 	<TextInput
+			// 		width="large"
+			// 		type="text"
+			// 		id="my-field"
+			// 		value={this.state.value}
+			// 		onChange={this.onChange}
+			// 	/>
+			// </div>
 		);
 	}
 }
