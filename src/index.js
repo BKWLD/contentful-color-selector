@@ -7,11 +7,11 @@ import ReactDOM from 'react-dom';
 import { init } from 'contentful-ui-extensions-sdk';
 
 // Forma 36 components
-import '@contentful/forma-36-react-components/dist/styles.css';
+import '@contentful/forma-36-react-components/dist/styles.css'
 import '@contentful/forma-36-fcss/dist/styles.css'
 import '@contentful/forma-36-fcss/dist/styles.css'
 import './index.css';
-import { FieldGroup } from '@contentful/forma-36-react-components';
+import { FieldGroup } from '@contentful/forma-36-react-components'
 
 // Custom components
 import Radio from './Radio'
@@ -71,8 +71,7 @@ class ColorSelector extends React.Component {
 	};
 
 	// Handle choices in the radio fields
-	onChange = e => {
-		const value = e.currentTarget.value;
+	onChange = (value) => {
 		this.setState({ value });
 		if (value) {
 			this.props.sdk.field.setValue(value);
@@ -80,41 +79,18 @@ class ColorSelector extends React.Component {
 			this.props.sdk.field.removeValue();
 		}
 	};
-
-/*
-		{/*
 			
-		<RadioButtonField
-			id='null'
-			labelText='None'
-			checked={!this.state.value}
-			labelIsLight={true}
-			onChange={this.onChange}
-		/>
-		
-
-					
-					<RadioButtonField
-						key={name}
-						id={name}
-		        labelText={name + <div class='swatch'></div>}
-		        checked={this.state.value == name}
-		        value={name}
-						labelIsLight={true}
-		        onChange={this.onChange}
-		      />
-			
-*/
 	// Generate the list of radio fields
 	render() {
 		return (
 			<FieldGroup>
-				<Radio name='None' />
 				{ Object.entries(this.state.colors).map(([name, color]) => (
 					<Radio 
 						key={name}
 						name={name}
 						color={color}
+						checked={ this.state.value == name }
+						onClick={ this.onChange }
 						/>
 				))}
 	    </FieldGroup>
@@ -125,11 +101,3 @@ class ColorSelector extends React.Component {
 init(sdk => {
 	ReactDOM.render(<ColorSelector sdk={sdk} />, document.getElementById('root'));
 });
-
-/**
- * By default, iframe of the extension is fully reloaded on every save of a source file.
- * If you want to use HMR (hot module reload) instead of full reload, uncomment the following lines
- */
-// if (module.hot) {
-//   module.hot.accept();
-// }

@@ -16,12 +16,18 @@ div {
 }
 
 .radio {
+  font-size:  14px;
   display: flex;
   align-items: center;
-  font-size:  14px;
 }
 
-input {
+.description {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+[type='radio'] {
   margin-right: 6px;
 }
 
@@ -32,4 +38,5 @@ input {
   border: 1px solid #d3dce0;
   box-shadow: inset 0 0 0 1px white ;
   margin-left: .5em;
+  margin-right: 1.5em;
 }
