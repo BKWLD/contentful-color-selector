@@ -38,5 +38,8 @@ div {
   border: 1px solid #d3dce0;
   box-shadow: inset 0 0 0 1px white ;
   margin-left: .5em;
-  margin-right: 1.5em;
+}
+
+.clear {
+  margin-left: 1.5em;
 }
