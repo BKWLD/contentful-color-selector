@@ -23,6 +23,7 @@
   },
   "scripts": {
     "prestart": "contentful extension update --src http://localhost:1234 --force",
+    "dev": "npm run start",
     "start": "contentful-extension-scripts start",
     "build": "contentful-extension-scripts build",
     "deploy": "npm run build && contentful extension update --force",
