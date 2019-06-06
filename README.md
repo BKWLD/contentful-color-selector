@@ -1,8 +1,12 @@
 # contentful-color-selector
 
-A UI Extension for Contentful that generate a dropdown for selecting a space-wide color
+A UI Extension for Contentful that generate a dropdown for selecting a space-wide color selector. A use case for this is for forcing an editor to choose from a set of predefined brand colors.
 
-![](http://yo.bkwld.com/500fda970800/Screen%20Recording%202019-05-31%20at%2008.37%20PM.gif)
+![](http://yo.bkwld.com/4042840bc4bc/Screen%20Recording%202019-06-06%20at%2007.52%20AM.gif)
+
+You can customize the color options in the Extension settings in Contentful.  Like:
+
+![](http://yo.bkwld.com/43bfbde1ce78/Image%202019-06-06%20at%207.53.56%20AM.png)
 
 ## Notes
 
